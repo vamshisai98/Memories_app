@@ -7,7 +7,6 @@ import dotenv from 'dotenv';
 import postRoutes from './routes/posts.js';
 
 const app = express();
-
 dotenv.config();
 
 app.use(bodyParser.json({ limit: '30mb', extended: true }));
@@ -20,10 +19,12 @@ app.get('/', (req, res) => {
   res.send('hello to memories API');
 });
 
+const CONNECTION_URL =
+  'mongodb+srv://training:7KysVUkkpVP7oX00@db-training-cluster.nsjyl.mongodb.net/<dbname>?retryWrites=true&w=majority';
 const PORT = process.env.PORT || 5000;
 
 mongoose
-  .connect(process.env.CONNECTION_URL, {
+  .connect(CONNECTION_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
